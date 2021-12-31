@@ -1,10 +1,19 @@
-const state = {};
+import { LOAD_CHARACTERS } from "../actions/types";
 
-export default mainReducer = (state, action) => {
+const state = {
+    characters: {},
+    episodes: {},
+    locations: {}
+};
+
+const mainReducer = (state, action) => {
     switch(action.type){
-        case 'LOAD_RICKDATA':
-            return state;
+        case LOAD_CHARACTERS:
+            console.log('characters loaded');
+            return {...state, characters: action.payload};
         default:
             return state;
     }
 }
+
+export default mainReducer;
