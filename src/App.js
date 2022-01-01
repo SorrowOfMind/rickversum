@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { loadCharacters } from './actions/loadData';
 
 function App() {
@@ -12,9 +13,11 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      
-    </div>
+    <Router>
+      <div className="App">
+        
+      </div>
+    </Router>
   );
 }
 
