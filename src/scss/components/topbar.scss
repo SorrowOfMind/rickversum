@@ -1,0 +1,13 @@
+
+.navbar {
+    .navbar__links {
+        @include flexbox(row, flex-end, center);
+        font-size: $font-size_xxl;
+        .navbar__link {
+            padding: 1rem 2rem;
+            color: #3AA4AE;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #E7F682;
+        }
+    }
+}

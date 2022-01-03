@@ -1,14 +1,17 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 
 import Home from './components/Home';
 
-const Routes = () => {
+const Routing = () => {
     return (
-        <Switch>
-            <Route exact path="/" component="Home"></Route>
-        </Switch>
+        <Routes>
+            <Route exact path="/" element="Home"></Route>
+            <Route path="/characters" element=""></Route>
+            <Route path="/episodes" element=""></Route>
+            <Route path="/locations" element=""></Route>
+        </Routes>
     );
 }
 
-export default Routes;
+export default Routing;
