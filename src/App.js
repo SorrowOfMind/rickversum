@@ -3,7 +3,9 @@ import {useDispatch} from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { loadCharacters } from './actions/loadData';
 import TopBar from './components/TopBar';
+import Home from './components/Home';
 import Routing from './routes';
+
 
 function App() {
 
@@ -18,6 +20,7 @@ function App() {
     <Router>
       <div className="App">
         <TopBar />
+        <Home />
         <Routing />
       </div>
     </Router>
