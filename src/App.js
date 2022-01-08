@@ -9,18 +9,18 @@ import Routing from './routes';
 
 function App() {
 
-  const dispatch = useDispatch();
-  const loadData = () => dispatch(loadCharacters())
+  // const dispatch = useDispatch();
+  // const loadData = () => dispatch(loadCharacters())
 
-  useEffect(() => {
-    loadData();
-  }, []);
+  // useEffect(() => {
+  //   loadData();
+  // }, []);
 
   return (
     <Router>
       <div className="App">
         <TopBar />
-        <Home />
+        {/* <Home /> */}
         <Routing />
       </div>
     </Router>

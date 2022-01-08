@@ -6,8 +6,6 @@ import imgEp from '../assets/rm_ep.png';
 
 const Home = () => {
 
-    
-
     return (
         <div className="images-links">
             <div className="image">
