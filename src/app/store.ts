@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 import charactersSlice from "../features/charactersSlice";
 import episodesSlice from "../features/episodesSlice";
 import locationsSlice from "../features/locationsSlice";
@@ -15,3 +16,4 @@ export default store;
 
 export type RootState = ReturnType<typeof store.dispatch>;
 export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch: () => AppDispatch = useDispatch;
