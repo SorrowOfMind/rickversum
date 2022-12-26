@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Episodes",
+        "imgUrl": "",
+        "link": "episodes"
+    },
+    {
+        "id": 2,
+        "title": "Characters",
+        "imgUrl": "",
+        "link": "characters"
+    },
+    {
+        "id": 3,
+        "title": "Locations",
+        "imgUrl": "",
+        "link": "locations"
+    }
+]

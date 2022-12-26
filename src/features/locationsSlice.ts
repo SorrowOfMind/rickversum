@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction, createSelector } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const fetchLocations = createAsyncThunk();
+//const fetchLocations = createAsyncThunk();
 
 const initialState = {
 

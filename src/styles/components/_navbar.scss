@@ -1,0 +1,17 @@
+.navbar {
+    background-color: $light-color;
+    width: 100%;
+    height: 30vh;
+    
+    @include flexbox(column, center, center);
+    
+    .title {
+        font-family: $font-title;
+        font-size: 8em;
+        color: $main-color;
+    }
+
+    .subtitle {
+        font-size: 4em;
+    }
+}

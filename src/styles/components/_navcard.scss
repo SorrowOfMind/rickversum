@@ -1,0 +1,15 @@
+.nav-card {
+    color: $light-color;
+
+    .page-img {
+        width: 125px;
+        height: 75px;
+        object-fit: cover;
+    }
+    
+    .card-content {
+        @include flexbox(horizontal, center, center);
+        font-size: 2em;
+    }
+
+}

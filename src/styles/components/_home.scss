@@ -1,0 +1,6 @@
+.home-container {
+    width: 100%;
+    height: 100%;
+    @include flexbox(horizontal, center, center);
+    gap: 4em;
+}
