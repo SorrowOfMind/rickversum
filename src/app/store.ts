@@ -1,19 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
-import charactersSlice from "../features/charactersSlice";
-import episodesSlice from "../features/episodesSlice";
-import locationsSlice from "../features/locationsSlice";
+import charactersReducer from "../features/charactersSlice";
+import episodesReducer from "../features/episodesSlice";
+import locationsReducer from "../features/locationsSlice";
 
 const store = configureStore({
     reducer: {
-        episodes: episodesSlice,
-        characters: charactersSlice,
-        locations: locationsSlice
+        episodes: episodesReducer,
+        characters: charactersReducer,
+        locations: locationsReducer
     }
 });
 
 export default store;
 
-export type RootState = ReturnType<typeof store.dispatch>;
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch: () => AppDispatch = useDispatch;

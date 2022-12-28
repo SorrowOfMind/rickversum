@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk, PayloadAction, createSelector} from '@reduxjs/toolkit'
 import axios from 'axios';
+import { RootState } from '../app/store';
 
 const EPISODES_API_URL = `${import.meta.env.VITE_BASE_API_URL}/episode`;
 
@@ -23,7 +24,7 @@ interface Episode {
     created: string
 }
 
-interface episodesState {
+export interface episodesState {
     count: number,
     pages: number,
     episodes: Episode[],
@@ -71,12 +72,13 @@ const episodesSlides = createSlice({
     }
 });
 
-export const selectEpisodes = createSelector((state: episodesState) => ({
-    count: state.count,
-    pages: state.pages,
-    episodes: state.episodes,
-    loading: state.loading,
-    error: state.error
-}), (state: episodesState) => state);
+//createSelector - if we want to memoize the fn which retrives the store value (use only when there is a derived state involved)
+export const selectEpisodes = createSelector((state: RootState) => ({
+    count: state.episodes.count,
+    pages: state.episodes.pages,
+    episodes: state.episodes.episodes,
+    loading: state.episodes.loading,
+    error: state.episodes.error
+}), (state) => state);
 
 export default episodesSlides.reducer;
