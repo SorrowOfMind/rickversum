@@ -9,9 +9,9 @@
 @import './components/navbar';
 @import './components/home';
 @import './components/navcard';
+@import './components/episodeCard';
 
 .main-container {
     width: 100%;
-    height: 70vh;
     background-color: $main-color;
 }

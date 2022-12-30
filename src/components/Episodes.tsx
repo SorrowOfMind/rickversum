@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import { episodesState, fetchEpisodes, selectEpisodes } from '../features/episodesSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
+import EpisodeCard from './EpisodeCard';
 
 
 const Episodes = () => {
@@ -23,7 +24,16 @@ const Episodes = () => {
   return (
     <>
       <div>Episodes</div>
-      {pages > 0 && episodes.map(episode => {console.log(episode)})}
+      <div className='episodes-container'>
+        {pages > 0 && episodes.map(episode => (
+          <EpisodeCard 
+            key={episode.id} 
+            name={episode.name} 
+            airDate={episode.air_date} 
+            episode={episode.episode}
+          />
+        ))}
+      </div>
     </>
   )
 }
