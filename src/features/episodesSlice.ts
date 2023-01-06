@@ -1,16 +1,16 @@
 import {createSlice, createAsyncThunk, PayloadAction, createSelector} from '@reduxjs/toolkit'
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { RootState } from '../app/store';
 
 const EPISODES_API_URL = `${import.meta.env.VITE_BASE_API_URL}/episode`;
 
-export const fetchEpisodes = createAsyncThunk("/locations", async (_, thunkAPI) => {
+export const fetchEpisodes = createAsyncThunk("episodes/fetchEpisodes", async (episodeId: string | null, thunkAPI) => {
     try {
-        // return await axios.get(EPISODES_API_URL).then(data => console.log(data));
-        const response = await axios.get(EPISODES_API_URL);
-        return await response.data;
-    } catch (error) {
-        return thunkAPI.rejectWithValue({error: "couldn't fetch resources"});
+        let endpoint = episodeId === null ? EPISODES_API_URL : `${EPISODES_API_URL}/${episodeId}`;
+        const response = await axios.get(endpoint);
+        return response?.data;
+    } catch (err : AxiosError | any) {
+        return thunkAPI.rejectWithValue({error: err.message});
     }
 });
 
@@ -28,6 +28,7 @@ export interface episodesState {
     count: number,
     pages: number,
     episodes: Episode[],
+    currentEpisode: Episode | null,
     loading: 'idle' | 'pending' | 'succeeded' | 'failed',
     error: string
 }
@@ -42,10 +43,12 @@ interface episodesPayload {
     results: Episode[]
 }
 
+
 const initialState: episodesState = {
     count: 0,
     pages: 0,
     episodes: [],
+    currentEpisode: null,
     loading: "idle",
     error: ""
 }
@@ -56,20 +59,23 @@ const episodesSlides = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(fetchEpisodes.pending, state => {
-            state.episodes = [];
             state.loading = "pending";
         });
-        builder.addCase(fetchEpisodes.fulfilled, (state, {payload}: PayloadAction<episodesPayload>) => {
-            state.episodes = payload.results;
-            state.count = payload.info.count;
-            state.pages = payload.info.pages;
+        builder.addCase(fetchEpisodes.fulfilled, (state, {payload}: PayloadAction<episodesPayload | Episode>) => {
+            if (payload.results !== undefined) {
+                state.episodes = payload.results;
+                state.count = payload.info.count;
+                state.pages = payload.info.pages;
+            } else {
+                state.currentEpisode = payload;
+            }
             state.loading = "succeeded";
         });
         builder.addCase(fetchEpisodes.rejected, (state, action: PayloadAction<any>) => {
-            state.error = action.payload;
             state.loading = "failed";
-        })
-    }
+            state.error = action.payload.error;
+        });
+    },
 });
 
 //createSelector - if we want to memoize the fn which retrives the store value (use only when there is a derived state involved)
@@ -80,5 +86,6 @@ export const selectEpisodes = createSelector((state: RootState) => ({
     loading: state.episodes.loading,
     error: state.episodes.error
 }), (state) => state);
+
 
 export default episodesSlides.reducer;

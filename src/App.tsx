@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import Characters from "./components/Characters"
+import EpisodeDetailedCard from "./components/EpisodeDetailedCard"
 import Episodes from "./components/Episodes"
 import Home from "./components/Home"
 import Locations from "./components/Locations"
@@ -14,7 +15,10 @@ function App() {
       <div className="main-container">
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/episodes" element={<Episodes/>}/>
+          <Route path="/episodes">
+              <Route index element={<Episodes/>}/>
+              <Route path=":id" element={<EpisodeDetailedCard/>}/>
+          </Route>
           <Route path="/characters" element={<Characters/>}/>
           <Route path="/locations" element={<Locations/>}/>
         </Routes>

@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux';
-import { RootState } from '../app/store';
 import { episodesState, fetchEpisodes, selectEpisodes } from '../features/episodesSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import EpisodeCard from './EpisodeCard';
@@ -13,7 +12,7 @@ const Episodes = () => {
     const {count, pages, episodes} = useSelector(selectEpisodes);
 
     useEffect(() => {
-        dispatch(fetchEpisodes());
+        dispatch(fetchEpisodes(null));
     }, [dispatch]);
 
 
@@ -27,10 +26,8 @@ const Episodes = () => {
       <div className='episodes-container'>
         {pages > 0 && episodes.map(episode => (
           <EpisodeCard 
-            key={episode.id} 
-            name={episode.name} 
-            airDate={episode.air_date} 
-            episode={episode.episode}
+            key={episode.id}
+            {...episode}
           />
         ))}
       </div>
