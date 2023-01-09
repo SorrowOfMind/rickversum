@@ -14,7 +14,7 @@ export const fetchEpisodes = createAsyncThunk("episodes/fetchEpisodes", async (e
     }
 });
 
-interface Episode {
+export interface Episode {
     id: number,
     name: string,
     air_date: string,
@@ -62,12 +62,12 @@ const episodesSlides = createSlice({
             state.loading = "pending";
         });
         builder.addCase(fetchEpisodes.fulfilled, (state, {payload}: PayloadAction<episodesPayload | Episode>) => {
-            if (payload.results !== undefined) {
-                state.episodes = payload.results;
-                state.count = payload.info.count;
-                state.pages = payload.info.pages;
+            if ((payload as episodesPayload).results !== undefined) {
+                state.episodes = (payload as episodesPayload).results;
+                state.count = (payload as episodesPayload).info.count;
+                state.pages = (payload as episodesPayload).info.pages;
             } else {
-                state.currentEpisode = payload;
+                state.currentEpisode = payload as Episode;
             }
             state.loading = "succeeded";
         });

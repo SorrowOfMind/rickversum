@@ -1,13 +1,8 @@
 .episodes-container {
     width: 100%;
     margin: 0 auto;
-    // @include flexbox(horizontal, space-between, stretch);
-    // flex-wrap: wrap;
-    // padding: 2em;
-    // gap: 3em;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));;
-    // grid-template-rows: auto;
     align-items: stretch;
     justify-content: stretch;
     justify-items: center;
