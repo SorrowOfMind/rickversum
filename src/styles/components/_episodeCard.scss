@@ -4,7 +4,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));;
     align-items: stretch;
-    justify-content: stretch;
     justify-items: center;
     align-content: center;
     padding: 2em 0;
@@ -12,7 +11,6 @@
 
     .card {
         max-width: 270px;
-        min-height: 200px;
         border-radius: 12px;
         overflow: hidden;
         .card-image {
@@ -31,7 +29,7 @@
             }
 
             .card-line-title {
-                color: $light-green;
+                color: $neon-green;
             }
 
             .card-line-content {

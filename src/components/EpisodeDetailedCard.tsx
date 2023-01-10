@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import placehoderImg from '../assets/placeholder.png'
 import { Episode, fetchEpisodes } from '../features/episodesSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
@@ -25,11 +25,12 @@ const EpisodeDetailedCard = () => {
     }, [fetchedEpisode]);
 
     return (
-        <div className="detailed-card">
-            <div className="detailed-card-header">
-                <img src={placehoderImg} className="card-image" />
-            </div>
-            
+        <>
+            <div className="detailed-card">
+                <div className="detailed-card-header">
+                    <img src={placehoderImg} className="card-image" />
+                </div>
+                
                 {currentEpisode != null && 
                     (<div className="detailed-card-content">
                         <div className="detailed-card-line">
@@ -46,7 +47,9 @@ const EpisodeDetailedCard = () => {
                         </div>
                     </div>)
                 }
-        </div>
+            </div>
+            <Link to=".."><button className="back-btn">&larr; Back</button></Link>
+        </>
     )
 }
 
